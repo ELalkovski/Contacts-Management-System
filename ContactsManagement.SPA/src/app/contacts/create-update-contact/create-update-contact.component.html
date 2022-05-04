@@ -1,0 +1,95 @@
+<div class="container container-fluid">
+    <p-toast></p-toast>
+    <div class="row mt-5">
+        <h3 class="text-center">Add Contact</h3>
+        <hr>
+    </div>
+    <form #contactsForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-grid p-formgrid">
+            <div class="col-md-6 col-sm-12 offset-md-3 mt-3">
+                <div class="form-group mb-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="contactDto.firstName" #firstName="ngModel" class="form-control"
+                            [class.ng-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)"
+                            [class.ng-dirty]="firstName.invalid && (firstName.dirty || firstName.touched)"
+                            name="firstName" type="text" pInputText required maxlength="24">
+                        <label for="float-input">First name</label>
+                    </span>
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                        <small *ngIf="firstName.errors?.['required']" id="username2-help" class="p-error block">
+                            First name is required
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="contactDto.surname" #surname="ngModel" class="form-control" name="surname"
+                            type="text" [class.ng-invalid]="surname.invalid && (surname.dirty || surname.touched)"
+                            [class.ng-dirty]="surname.invalid && (surname.dirty || surname.touched)" pInputText required
+                            maxlength="24">
+                        <label for="float-input">Surname</label>
+                    </span>
+                    <div *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                        <small *ngIf="surname.errors?.['required']" id="username2-help" class="p-error block">
+                            Surname is required
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="contactDto.address" #address="ngModel" class="form-control" name="address"
+                            type="text" pInputText>
+                        <label for="float-input">Address</label>
+                    </span>
+                </div>
+                <div class="form-group mb-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="contactDto.phoneNumber" #phoneNumber="ngModel" class="form-control"
+                            name="phoneNumber" type="number" pInputText>
+                        <label for="float-input">Phone number</label>
+                    </span>
+                </div>
+                <div class="form-group mb-4">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="contactDto.iban" #iban="ngModel" class="form-control" name="iban"
+                            type="text" pInputText [class.ng-invalid]="iban.invalid && (iban.dirty || iban.touched)"
+                            [class.ng-dirty]="iban.invalid && (iban.dirty || iban.touched)" required maxlength="34">
+                        <label for="float-input">IBAN</label>
+                    </span>
+                    <div *ngIf="iban.invalid && (iban.dirty || iban.touched)">
+                        <small *ngIf="iban.errors?.['required']" id="username2-help" class="p-error block">
+                            IBAN is required
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="basic">Date of birth</label>
+                    <p-calendar [(ngModel)]="contactDto.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth"
+                        [required]="true" [readonlyInput]="true" dateFormat="dd.mm.yy"
+                        [class.ng-invalid]="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+                        [class.ng-dirty]="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
+                    </p-calendar>
+                    <div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
+                        <small *ngIf="dateOfBirth.errors?.['required']" id="username2-help" class="p-error block">
+                            Date of birth is required
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-end">
+                        <button pButton pRipple type="button" label="Cancel" class="p-button-secondary cancel-btn"
+                            (click)="onCancel()"></button>
+                        <button *ngIf="!contactDto.id" pButton pRipple type="submit" label="Create"
+                            class="p-button-success create-btn" icon="pi pi-check"></button>
+                        <button *ngIf="contactDto.id" pButton pRipple type="submit" label="Update"
+                            class="p-button-warning create-btn" icon="pi pi-user-edit"></button>
+                    </div>
+                </div>
+                <p-confirmDialog [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+                </p-confirmDialog>
+            </div>
+        </div>
+    </form>
+
+</div>

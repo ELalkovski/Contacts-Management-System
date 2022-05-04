@@ -1,0 +1,47 @@
+<div class="container container-fluid">
+    <p-toast></p-toast>
+    <div class="row mt-5">
+        <h3 class="text-center">My Contacts List</h3>
+        <hr>
+    </div>
+    <div *ngIf="contacts && contacts.length > 0">
+        <p-table [value]="contacts" styleClass="p-datatable-striped" [lazy]="true" (onLazyLoad)="loadContacts($event)"
+            [showLoader]="true" [paginator]="true" [rows]="take" [totalRecords]="totalCount"
+            (onPage)="loadContacts($event)" [showCurrentPageReport]="false" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>#</th>
+                    <th>First name</th>
+                    <th>Surname</th>
+                    <th>Address</th>
+                    <th>Phone number</th>
+                    <th>IBAN</th>
+                    <th>Date of birth</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-contact>
+                <tr>
+                    <td></td>
+                    <td>{{contact.firstName}}</td>
+                    <td>{{contact.surname}}</td>
+                    <td>{{contact.address}}</td>
+                    <td>{{contact.phoneNumber}}</td>
+                    <td>{{contact.iban}}</td>
+                    <td>{{contact.dateOfBirth}}</td>
+                    <td>
+                        <button (click)="onDelete(contact.id)" pButton pRipple type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger action-btn mr-2"></button>
+                        <button (click)="onEdit(contact.id)" pButton pRipple type="button" icon="pi pi-user-edit"
+                            class="p-button-rounded p-button-warning action-btn"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div *ngIf="!contacts || contacts.length === 0">
+        <h5 class="text-muted text-center">You don't have any contacts yet</h5>
+    </div>
+    <p-confirmDialog [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+    </p-confirmDialog>
+</div>

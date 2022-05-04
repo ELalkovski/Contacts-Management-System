@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex justify-content-center" href="#">
+      <i class="pi pi-phone" style="font-size: 1.5rem; margin-top: 3px;"></i>
+      <span style="margin-left: 8px;">Contacts Management</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a id="my-contacts" class="nav-link mx-2" href="javascript:void(0)" (click)="navigate('contacts/overview', 'my-contacts')">My Contacts</a>
+        </li>
+        <li class="nav-item">
+          <a id="add-contact" class="nav-link mx-2" href="javascript:void(0)" (click)="navigate('contacts/create', 'add-contact')">Add Contact</a>
+        </li>
+        <li class="nav-item">
+          <a id="about" class="nav-link active mx-2" href="javascript:void(0)" (click)="navigate('/', 'about')">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<p-toast></p-toast>
+<router-outlet></router-outlet>
