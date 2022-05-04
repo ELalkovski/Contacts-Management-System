@@ -8,5 +8,6 @@ How to run application:
 3. Run "**npm install**" in the terminal
 4. Run "**npm run start**" in the terminal
 5. Visit localhost:4200 on prefered browser
+6. For starting the e2e tests run **npm run cypress**
 
 Happy testing :)
